@@ -1,0 +1,9 @@
+{% extends 'main.html' %}
+
+{% block content %}
+        <img src={{ announcement.thumbnail.url }} alt={{ announcement.title }} width="250"/>
+        <strong>{{ announcement.title }}</strong>
+        <p>{{ announcement.full_description }}</p>
+        <small>{{ announcement.time_create }}</small>
+        <hr>
+{% endblock %}

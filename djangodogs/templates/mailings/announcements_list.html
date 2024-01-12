@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    {% for Announcement in announcements %}
+        <img src={{ Announcement.thumbnail.url }} alt={{ Announcement.title }} width="150"/>
+        <strong>{{ Announcement.title }}</strong>
+        <p>{{ Announcement.short_description }}</p>
+        <small>{{ Announcement.time_create }}</small>
+        <hr>
+        <a href="{{ Announcement.get_absolute_url }}">Подробнее</a>
+        <form action="{% url 'send_mess' %}" method="post">
+            <br>
+            {% csrf_token %}
+            
+            {% comment %} <br>
+            <label for="message_text">Текст сообщения:</label>
+            <textarea id="message_text" name="message_text" required></textarea>
+            <br> {% endcomment %}
+            <button type="submit">Отправить сообщение</button>
+        </form>
+        {% comment %} <a href="{% url 'articles_by_category' article.category.slug %}" class="btn btn-primary">{{ article.category.title }}</a> {% endcomment %}
+    {% endfor %}
+{% endblock %}
